@@ -1,0 +1,35 @@
+<h1>Books</h1>
+<h1><%= @books.books %></h1>
+
+<h2>Title</h2>
+<p><%= @books.title %></p>
+
+<h2>Body</h2>
+<p><%= @books.body %></p>
+<%= link_to "Edit", edit_book_path(@book.id) %>
+<%= link_to "削除",book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
+<h2>New Book</h2>
+<%= form_with model: [ @book, @book.comments.build ] do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+
+<h2>Comments</h2>
+<%= render @book.comments %>
+
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %>
+<% end %>
+
+
+
+
